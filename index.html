@@ -9,7 +9,7 @@
 <style>
 :root{
   --ivory:#f4eee1;      /* 바탕 상아 */
-  --ivory-2:#ece3d1;    /* 카드 상아 */
+  --ivory-2:#ece3d1;    /* 카드 상아 document*/
   --gold:#a8853f;       /* 금박 */
   --gold-l:#c9a961;     /* 밝은 금 */
   --ink:#2b241b;        /* 본문 잉크 */
@@ -929,10 +929,10 @@ function openM(i){
   document.getElementById('mMeta').innerText =
     `${c.sex} · ${era==='S'?c.ageS:c.ageN}세 · ${era==='S'?c.jobS:c.jobN} · ${era==='S'?'417년':'427년'}`;
   document.getElementById('mKeys').innerHTML = c.keys.map(k=>`<span>${k}</span>`).join('');
-  document.getElementById('mQuote').innerHTML = `"${c.quote}"<small>${c.qs}</small>`;
-  document.getElementById('mDesc').innerText = c.desc;
-  document.getElementById('mVoice').innerText = c.voice;
-  document.getElementById('mFate').innerText = c.fate;
+document.getElementById('mQuote').innerHTML = `"${c.quote}"`;
+document.getElementById('mDesc').innerText = c.desc;
+document.getElementById('mVoice').innerText = c.voice;
+document.getElementById('mFate').innerText = c.mystery;
   document.getElementById('mThumbs').innerHTML = STATES.map((s,n)=>
     `<img src="${URL_(c.c,era,s)}" class="${n===0?'on':''}" onclick="swap(this,'${URL_(c.c,era,s)}')" alt="">`
   ).join('');
