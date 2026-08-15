@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SELBARAS — 셀바라스 공작가</title>
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;0,600;1,300&family=Noto+Serif+KR:wght@300;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ivory:#f4eee1;      /* 바탕 상아 */
+  --ivory-2:#ece3d1;    /* 카드 상아 */
+  --gold:#a8853f;       /* 금박 */
+  --gold-l:#c9a961;     /* 밝은 금 */
+  --ink:#2b241b;        /* 본문 잉크 */
+  --ink-l:#6b6154;      /* 흐린 잉크 */
+  --dark:#171310;       /* 어둠 속성 */
+  --dark-2:#221c17;
+  --blood:#7d2f2a;      /* 봉인 인장 */
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--ivory);color:var(--ink);
+  font-family:'Pretendard',sans-serif;line-height:1.75;word-break:keep-all;
+  background-image:
+    radial-gradient(ellipse at 50% -10%, rgba(168,133,63,.13), transparent 60%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.05'/%3E%3C/svg%3E");
+}
+.ser{font-family:'Noto Serif KR',serif}
+.lat{font-family:'Cormorant Garamond',serif}
+
+/* ── 헤더 ── */
+header{max-width:1080px;margin:0 auto;padding:44px 20px 0;text-align:center}
+.crest{display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:10px}
+.crest .line{height:1px;width:min(120px,18vw);background:linear-gradient(90deg,transparent,var(--gold))}
+.crest .line.r{background:linear-gradient(90deg,var(--gold),transparent)}
+.crest .mark{
+  width:34px;height:34px;border:1px solid var(--gold);transform:rotate(45deg);
+  display:flex;align-items:center;justify-content:center;position:relative;flex-shrink:0
+}
+.crest .mark::after{content:'';width:12px;height:12px;background:var(--dark);border-radius:50%}
+.lat-title{font-family:'Cormorant Garamond',serif;font-size:12px;letter-spacing:.72em;color:var(--gold);text-indent:.72em;font-weight:500}
+h1.main{
+  font-family:'Noto Serif KR',serif;font-weight:900;
+  font-size:clamp(28px,6vw,48px);letter-spacing:.18em;color:var(--ink);
+  margin:6px 0 8px;text-indent:.18em
+}
+.sub{font-size:12.5px;color:var(--ink-l);letter-spacing:.32em;font-weight:500}
+nav{display:flex;justify-content:center;gap:clamp(18px,5vw,52px);margin-top:34px;border-top:1px solid rgba(168,133,63,.35);border-bottom:1px solid rgba(168,133,63,.35);padding:0 4px;overflow-x:auto}
+.tab-btn{
+  background:none;border:none;cursor:pointer;padding:15px 2px;position:relative;
+  font-family:'Noto Serif KR',serif;font-weight:500;font-size:13px;letter-spacing:.28em;
+  color:var(--ink-l);white-space:nowrap;transition:color .3s;text-indent:.28em
+}
+.tab-btn.active{color:var(--gold)}
+.tab-btn.active::after{content:'';position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--gold)}
+
+main{max-width:1080px;margin:0 auto;padding:52px 20px 100px}
+.section{display:none;animation:fade .5s ease-out}
+.section.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+/* ── 공용 ── */
+.orn{display:flex;align-items:center;justify-content:center;gap:12px;margin:46px 0}
+.orn i{height:1px;flex:1;max-width:180px;background:linear-gradient(90deg,transparent,rgba(168,133,63,.6))}
+.orn i:last-child{background:linear-gradient(90deg,rgba(168,133,63,.6),transparent)}
+.orn span{color:var(--gold);font-size:10px;letter-spacing:.4em}
+.eyebrow{font-family:'Cormorant Garamond',serif;font-size:11px;letter-spacing:.5em;color:var(--gold);text-transform:uppercase;display:block;margin-bottom:8px}
+h2.sec{font-family:'Noto Serif KR',serif;font-weight:700;font-size:20px;letter-spacing:.1em;margin-bottom:20px}
+
+/* ── 프롤로그 히어로 배경 ── */
+.hero{
+  position:relative;width:100%;aspect-ratio:16/7;overflow:hidden;margin-bottom:46px;
+  border:1px solid rgba(168,133,63,.45);background:#ded3bf
+}
+.hero img{width:100%;height:100%;object-fit:cover;filter:saturate(.82) contrast(1.04)}
+.hero::after{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,rgba(23,19,16,.42) 0%,rgba(23,19,16,.1) 45%,rgba(244,238,225,.9) 100%)
+}
+.hero .cap{
+  position:absolute;left:0;right:0;bottom:14px;z-index:2;text-align:center;
+  font-family:'Cormorant Garamond',serif;font-size:11px;letter-spacing:.44em;color:var(--ink);opacity:.75
+}
+@media(max-width:640px){.hero{aspect-ratio:4/3}}
+
+/* ── 프롤로그 ── */
+.pro{max-width:660px;margin:0 auto;text-align:center}
+.epig{
+  font-family:'Noto Serif KR',serif;font-weight:300;font-style:italic;
+  font-size:clamp(17px,3.4vw,22px);line-height:2.1;color:var(--ink);margin-bottom:40px
+}
+.epig b{font-weight:700;color:var(--blood)}
+.pro p{font-size:14.5px;color:#4a4136;margin-bottom:22px;text-align:left}
+.pro .quote{
+  border-left:2px solid var(--gold);padding:4px 0 4px 20px;margin:34px 0;text-align:left;
+  font-family:'Noto Serif KR',serif;font-size:15px;color:var(--ink)
+}
+.pro .quote small{display:block;font-family:'Pretendard';font-size:12px;color:var(--ink-l);margin-top:8px;letter-spacing:.05em}
+.seal{
+  background:var(--dark);color:var(--ivory-2);border-radius:2px;padding:26px 28px;margin:34px 0;text-align:left;
+  position:relative;border:1px solid rgba(201,169,97,.35)
+}
+.seal::before{
+  content:'封';position:absolute;top:-14px;right:20px;background:var(--blood);color:#f0e4d2;
+  font-family:'Noto Serif KR',serif;font-size:13px;width:28px;height:28px;
+  display:flex;align-items:center;justify-content:center;border-radius:50%
+}
+.seal .st{font-family:'Cormorant Garamond',serif;font-size:11px;letter-spacing:.42em;color:var(--gold-l);margin-bottom:10px}
+.seal p{color:#d9cfbe;font-size:13.5px;margin:0}
+.cta{
+  display:inline-block;margin-top:14px;padding:17px 46px;background:var(--dark);color:var(--gold-l);
+  text-decoration:none;font-family:'Noto Serif KR',serif;font-weight:500;font-size:13.5px;letter-spacing:.24em;
+  border:1px solid var(--gold);transition:all .3s;text-indent:.24em
+}
+.cta:hover{background:var(--gold);color:var(--dark);border-color:var(--gold)}
+.cta-sub{margin-top:14px;font-family:'Cormorant Garamond',serif;font-size:11px;letter-spacing:.38em;color:var(--ink-l)}
+
+/* ── 세계관 ── */
+.hero-card{
+  background:var(--dark);color:#ddd2be;padding:38px 34px;border:1px solid rgba(201,169,97,.3);
+  position:relative;margin-bottom:44px
+}
+.hero-card::after{content:'';position:absolute;inset:7px;border:1px solid rgba(201,169,97,.16);pointer-events:none}
+.hero-card h3{font-family:'Noto Serif KR',serif;font-weight:700;font-size:19px;color:var(--gold-l);letter-spacing:.08em;margin-bottom:14px}
+.hero-card p{font-size:14px;color:#c6bba7;margin-bottom:12px}
+.hero-card p:last-child{margin-bottom:0}
+.hero-card b{color:var(--gold-l);font-weight:500}
+
+.f-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px}
+.f-card{background:var(--ivory-2);border:1px solid rgba(168,133,63,.4);padding:9px 9px 20px;position:relative;transition:.3s}
+.f-card:hover{border-color:var(--gold);transform:translateY(-3px)}
+.f-img{position:relative;aspect-ratio:16/10;overflow:hidden;background:#ded3bf;margin-bottom:14px}
+.f-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s;filter:saturate(.85)}
+.f-card:hover .f-img img{transform:scale(1.05)}
+.f-img::after{content:'';position:absolute;inset:0;border:1px solid rgba(255,255,255,.25);pointer-events:none}
+.f-img .dir{
+  position:absolute;top:0;left:0;z-index:2;background:var(--ivory-2);color:var(--gold);
+  font-family:'Noto Serif KR',serif;font-weight:900;font-size:15px;
+  width:28px;height:28px;display:flex;align-items:center;justify-content:center
+}
+.f-body{padding:0 11px}
+.f-card h4{font-family:'Noto Serif KR',serif;font-weight:700;font-size:15.5px;margin-bottom:4px;letter-spacing:.04em}
+.f-card .role{font-size:11px;color:var(--gold);letter-spacing:.16em;margin-bottom:9px}
+.f-card p{font-size:12.5px;color:#5c5348}
+.f-card.core{background:var(--dark);border-color:var(--gold)}
+.f-card.core .f-img .dir{background:var(--dark);color:var(--gold-l)}
+.f-card.core h4{color:#ece0cb}
+.f-card.core p{color:#b7ab97}
+
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+.p-card{background:var(--ivory-2);border:1px solid rgba(168,133,63,.4);padding:24px}
+.p-card.dark{background:var(--dark);border-color:rgba(201,169,97,.45)}
+.p-card h4{font-family:'Noto Serif KR',serif;font-weight:700;font-size:15px;margin-bottom:6px}
+.p-card.dark h4{color:var(--gold-l)}
+.p-card .tagline{font-size:11px;letter-spacing:.18em;color:var(--gold);margin-bottom:12px}
+.p-card p{font-size:12.5px;color:#5c5348}
+.p-card.dark p{color:#b7ab97}
+.elems{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:12px}
+.elems span{font-size:11px;border:1px solid rgba(168,133,63,.5);padding:3px 11px;color:#5c5348;letter-spacing:.06em}
+.p-card.dark .elems span{border-color:rgba(201,169,97,.4);color:#b7ab97}
+
+/* ── 연표 ── */
+.tl{max-width:720px;margin:0 auto;position:relative;padding-left:34px}
+.tl::before{content:'';position:absolute;left:7px;top:8px;bottom:8px;width:1px;background:linear-gradient(180deg,rgba(168,133,63,.2),var(--gold),var(--blood))}
+.tl-item{position:relative;padding-bottom:38px}
+.tl-item::before{
+  content:'';position:absolute;left:-31px;top:7px;width:9px;height:9px;
+  background:var(--ivory);border:1px solid var(--gold);transform:rotate(45deg)
+}
+.tl-item.key::before{background:var(--gold)}
+.tl-item.end::before{background:var(--blood);border-color:var(--blood)}
+.tl-y{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:600;color:var(--gold);letter-spacing:.08em;line-height:1}
+.tl-item.end .tl-y{color:var(--blood)}
+.tl-t{font-family:'Noto Serif KR',serif;font-weight:700;font-size:15.5px;margin:5px 0 5px}
+.tl-d{font-size:13px;color:#5c5348}
+.tl-age{font-size:11px;color:var(--gold);letter-spacing:.14em;margin-left:8px}
+
+/* ── 인물 ── */
+.era-bar{display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:26px}
+.era-sw{display:inline-flex;border:1px solid var(--gold);background:var(--ivory-2)}
+.era-sw button{
+  background:none;border:none;cursor:pointer;padding:9px 22px;font-family:'Noto Serif KR',serif;
+  font-size:12px;letter-spacing:.14em;color:var(--ink-l);transition:.25s
+}
+.era-sw button.on{background:var(--dark);color:var(--gold-l)}
+.era-note{font-size:11px;color:var(--ink-l);letter-spacing:.08em}
+
+.filters{display:flex;gap:7px;justify-content:center;flex-wrap:wrap;margin-bottom:30px}
+.filter-btn{
+  background:none;border:1px solid rgba(168,133,63,.45);color:var(--ink-l);padding:7px 16px;
+  font-size:11.5px;cursor:pointer;letter-spacing:.08em;transition:.25s;font-family:'Pretendard';font-weight:600
+}
+.filter-btn.active{background:var(--gold);border-color:var(--gold);color:#fff}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(158px,1fr));gap:18px}
+.card{cursor:pointer;transition:.3s;background:var(--ivory-2);border:1px solid rgba(168,133,63,.4);padding:9px 9px 14px}
+.card:hover{border-color:var(--gold);transform:translateY(-4px)}
+.card .fr{position:relative;aspect-ratio:3/4;overflow:hidden;background:#ded3bf}
+.card .fr::after{content:'';position:absolute;inset:0;border:1px solid rgba(255,255,255,.25);pointer-events:none}
+.card img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.card:hover img{transform:scale(1.04)}
+.card .era-tag{
+  position:absolute;top:0;left:0;background:var(--dark);color:var(--gold-l);
+  font-family:'Cormorant Garamond',serif;font-size:10px;letter-spacing:.2em;padding:2px 9px
+}
+.card .txt{text-align:center;margin-top:11px}
+.card .fac{font-size:10px;letter-spacing:.18em;color:var(--gold)}
+.card .nm{font-family:'Noto Serif KR',serif;font-weight:700;font-size:15px;margin:3px 0 2px}
+.card .job{font-size:11px;color:var(--ink-l)}
+
+/* ── 모달 ── */
+#modal{position:fixed;inset:0;z-index:900;display:none;align-items:center;justify-content:center;background:rgba(23,19,16,.86);padding:0}
+#modal.open{display:flex}
+.mbox{background:var(--ivory);width:100%;max-width:920px;max-height:100vh;overflow:hidden;display:flex;flex-direction:column;position:relative;border:1px solid var(--gold)}
+@media(min-width:768px){#modal{padding:24px}.mbox{flex-direction:row;max-height:86vh}}
+.mclose{position:absolute;top:10px;right:16px;z-index:5;background:none;border:none;font-size:28px;color:var(--ink-l);cursor:pointer;line-height:1;font-weight:300}
+.mclose:hover{color:var(--blood)}
+.mleft{background:var(--ivory-2);padding:16px;flex-shrink:0;display:flex;flex-direction:column;gap:10px}
+@media(min-width:768px){.mleft{width:38%}}
+.mmain{flex:1;min-height:290px;overflow:hidden;position:relative;background:#ded3bf}
+.mmain img{width:100%;height:100%;object-fit:cover}
+.mthumbs{display:flex;gap:7px;overflow-x:auto}
+.mthumbs img{width:46px;height:62px;object-fit:cover;cursor:pointer;opacity:.5;border:1px solid transparent;flex-shrink:0;transition:.2s}
+.mthumbs img.on{opacity:1;border-color:var(--gold)}
+.mright{flex:1;padding:34px 34px 30px;overflow-y:auto}
+.mright::-webkit-scrollbar{width:3px}
+.mright::-webkit-scrollbar-thumb{background:var(--gold)}
+.mfac{font-family:'Cormorant Garamond',serif;font-size:11px;letter-spacing:.4em;color:var(--gold);text-transform:uppercase}
+.mname{font-family:'Noto Serif KR',serif;font-weight:900;font-size:29px;letter-spacing:.06em;margin:5px 0 2px}
+.mmeta{font-size:12px;color:var(--ink-l);letter-spacing:.1em;margin-bottom:18px}
+.mkeys{display:flex;gap:8px;margin-bottom:18px}
+.mkeys span{font-family:'Noto Serif KR',serif;font-size:13px;color:var(--gold);border:1px solid rgba(168,133,63,.5);padding:2px 12px}
+.mquote{
+  font-family:'Noto Serif KR',serif;font-style:italic;font-size:15px;color:var(--ink);
+  border-top:1px solid rgba(168,133,63,.4);border-bottom:1px solid rgba(168,133,63,.4);
+  padding:16px 0;margin-bottom:20px
+}
+.mquote small{display:block;font-style:normal;font-family:'Pretendard';font-size:11.5px;color:var(--ink-l);margin-top:9px}
+.msec{margin-bottom:18px}
+.msec h5{font-family:'Cormorant Garamond',serif;font-size:11px;letter-spacing:.35em;color:var(--gold);margin-bottom:6px;text-transform:uppercase}
+.msec p{font-size:13.5px;color:#4a4136}
+.mfate{background:var(--dark);padding:15px 18px;margin-top:22px;border-left:2px solid var(--blood)}
+.mfate .ft{font-family:'Cormorant Garamond',serif;font-size:10px;letter-spacing:.34em;color:var(--gold-l);margin-bottom:6px}
+.mfate .redact{background:#3a3129;color:#3a3129;font-size:13px;cursor:help;transition:.4s;user-select:none;padding:1px 4px}
+.mfate:hover .redact{background:transparent;color:#a89886}
+
+footer{text-align:center;padding:0 20px 46px;font-family:'Cormorant Garamond',serif;font-size:11px;letter-spacing:.35em;color:var(--ink-l)}
+
+@media(max-width:640px){
+  .two{grid-template-columns:1fr}
+  .hero-card{padding:28px 22px}
+  .mright{padding:26px 22px}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="crest"><span class="line"></span><span class="mark"></span><span class="line r"></span></div>
+  <div class="lat-title">HOUSE OF SELBARAS</div>
+  <h1 class="main ser">셀바라스</h1>
+  <div class="sub">어 둠 의 공 작 가 · 그 리 고 두 번 째 삶</div>
+  <nav>
+    <button class="tab-btn active" id="tab-pro" onclick="tab('pro')">프롤로그</button>
+    <button class="tab-btn" id="tab-world" onclick="tab('world')">세계관</button>
+    <button class="tab-btn" id="tab-time" onclick="tab('time')">연표</button>
+    <button class="tab-btn" id="tab-char" onclick="tab('char')">인물</button>
+  </nav>
+</header>
+
+<main>
+
+<!-- ═══ 프롤로그 ═══ -->
+<section class="section active" id="section-pro">
+  <div class="hero">
+    <img src="https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/BG_MANOR.webp" alt="무너지던 밤의 셀바라스 공작저">
+    <div class="cap lat">THE NIGHT IT BURNED</div>
+  </div>
+  <div class="pro">
+    <p class="epig ser">
+      불길이 저택을 삼킨 밤,<br>
+      가문은 하룻밤 만에 역적이 되었다.<br>
+      <b>그리고 나는, 두 번째로 열 살이 되었다.</b>
+    </p>
+
+    <p>
+      잃어버린 막내와 닮았다는 이유로 거둬진 아이. 공작부인이 데려왔으나, 그녀가 의문의 사고로 죽은 뒤로는
+      이름만 셀바라스인 굴러온 아이였다. 아무도 가족이라 부르지 않았고, 아무도 눈을 마주치지 않았다.
+    </p>
+
+    <div class="quote ser">
+      "도망쳐. 어서."
+      <small>— 등을 떠민 손. 끝내 돌아보지 못한 얼굴. 그것이 마지막이었다.</small>
+    </div>
+
+    <p>
+      몇 년을 떠돌다 골목 끝에서 칼이 등을 파고들었다. 누구의 손인지도 모른 채.
+      그렇게 끝인 줄 알았던 눈을 다시 떴을 때 — 죽었어야 할 얼굴들이 모두 살아 있었다.
+      가문이 아직 최전성기였던, 417년의 대회의실에서.
+    </p>
+
+    <div class="seal">
+      <div class="st">CONFIDENTIAL — 당신만이 아는 것</div>
+      <p>
+        셀바라스는 정면으로 무너지지 않는다. 소문이 평판을 갉고, 동맹이 하나씩 떨어져 나가고,
+        완전히 고립된 뒤에야 누명과 독과 칼이 온다. 그 순서를 아는 사람은 이 저택에 단 하나뿐이다.
+        다만 — 회귀를 입에 담는 순간 목이 막히고, 강행하면 피를 토한다. 증명할 방법은 행동뿐이다.
+      </p>
+    </div>
+
+    <p>
+      미래를 안다는 건 무기이자 짐이다. 한 수를 막으면 적은 다른 길로 돌아오고, 앞서 움직인 대가는
+      반드시 어딘가에서 청구된다. 그럼에도 이번엔 다르게 끝낼 수 있을까.
+      가문을 구할 것인가, 아니면 이름을 버리고 자유로워질 것인가.
+    </p>
+
+    <div class="orn"><i></i><span>◆</span><i></i></div>
+
+    <a class="cta ser" href="https://share.crack.wrtn.ai/9ymmv9">두 번째 삶을 시작한다</a>
+    <div class="cta-sub">THE SECOND LIFE BEGINS</div>
+  </div>
+</section>
+
+<!-- ═══ 세계관 ═══ -->
+<section class="section" id="section-world">
+
+  <div class="hero-card">
+    <h3>어둠 가문 셀바라스</h3>
+    <p>
+      황도 인근의 독립 공작령. 대륙이 기피하는 <b>어둠 속성</b>의 핏줄이며, 모두가 두려워하기에 아무도 건드리지 못한다.
+      흑막이라 불리지만 — 실은 대륙의 균형을 위해 움직인다. 그 진의를 아는 자는 아직 없다.
+    </p>
+    <p>
+      5세력의 균형은 표면상 황실의 질서로 유지된다. 그 아래에서는 견제와 암투가 쉬지 않고,
+      그 판을 흔드는 핵심 변수가 바로 이 가문이다.
+    </p>
+  </div>
+
+  <span class="eyebrow">Five Powers</span>
+  <h2 class="sec ser">대륙의 다섯 세력</h2>
+  <div class="f-grid">
+    <div class="f-card core">
+      <div class="f-img">
+        <span class="dir ser">中</span>
+        <img src="https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/BG_SEL.webp" alt="셀바라스 공작령" loading="lazy">
+      </div>
+      <div class="f-body">
+        <h4>셀바라스 공작령</h4>
+        <div class="role" style="color:var(--gold-l)">어둠 가문 · 독립령</div>
+        <p>기피당하되 두려움의 대상. 황실조차 음지에서만 견제한다.</p>
+      </div>
+    </div>
+
+    <div class="f-card">
+      <div class="f-img">
+        <span class="dir ser">中</span>
+        <img src="https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/BG_IMP.webp" alt="솔드레인 황실" loading="lazy">
+      </div>
+      <div class="f-body">
+        <h4>솔드레인 황실</h4>
+        <div class="role">황제 · 귀족연합</div>
+        <p>권력의 정점. 그러나 내부 부패와 귀족 이권에 황제마저 묶여 있다.</p>
+      </div>
+    </div>
+
+    <div class="f-card">
+      <div class="f-img">
+        <span class="dir ser">✝</span>
+        <img src="https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/BG_CHURCH.webp" alt="아르젠 성교단" loading="lazy">
+      </div>
+      <div class="f-body">
+        <h4>아르젠 성교단</h4>
+        <div class="role">빛 · 정화 · 성녀</div>
+        <p>빛의 권능을 관장하는 대신전. 어둠을 정화의 대상으로 규정하며, 그 교리는 셀바라스를 향한 배척의 가장 오래된 근거다.</p>
+      </div>
+    </div>
+
+    <div class="f-card">
+      <div class="f-img">
+        <span class="dir ser">北</span>
+        <img src="https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/BG_NORTH.webp" alt="벨타르 대공령" loading="lazy">
+      </div>
+      <div class="f-body">
+        <h4>벨타르 대공령</h4>
+        <div class="role">설원 · 유폐지</div>
+        <p>갇힌 대공의 변경. 고립된 채로도 독자적으로 생존한다.</p>
+      </div>
+    </div>
+
+    <div class="f-card">
+      <div class="f-img">
+        <span class="dir ser">南</span>
+        <img src="https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/BG_SOUTH.webp" alt="벨마라 항구" loading="lazy">
+      </div>
+      <div class="f-body">
+        <h4>벨마라 항구</h4>
+        <div class="role">해군 · 무역</div>
+        <p>제독이 장악한 거점. 명목은 황실, 실질은 독립.</p>
+      </div>
+    </div>
+
+    <div class="f-card">
+      <div class="f-img">
+        <span class="dir ser">東</span>
+        <img src="https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/BG_EAST.webp" alt="미레스 마탑" loading="lazy">
+      </div>
+      <div class="f-body">
+        <h4>미레스 마탑</h4>
+        <div class="role">마법 · 연구</div>
+        <p>정치에 개입하지 않는다. 지식이 언제나 우선이다.</p>
+      </div>
+    </div>
+
+    <div class="f-card">
+      <div class="f-img">
+        <span class="dir ser">西</span>
+        <img src="https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/BG_WEST.webp" alt="루테른 상단" loading="lazy">
+      </div>
+      <div class="f-body">
+        <h4>루테른 상단</h4>
+        <div class="role">교역 · 정보 · 암시장</div>
+        <p>중립을 표방하나, 돈 앞에서는 누구와도 손을 잡는다.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="orn"><i></i><span>◆</span><i></i></div>
+
+  <span class="eyebrow">Attributes</span>
+  <h2 class="sec ser">속성과 마물</h2>
+  <div class="two">
+    <div class="p-card">
+      <h4>네 갈래의 흔한 힘</h4>
+      <div class="tagline">COMMON</div>
+      <div class="elems"><span>불 — 화염·폭발</span><span>물 — 해류·압력</span><span>바람 — 참격·비행</span><span>대지 — 방어·지형</span></div>
+      <p>숙련될수록 변형이 열린다. 얼음과 안개, 진공과 번개, 금속과 결정까지. 다만 모든 마법은 몸 안의 마나를 태워 쓰며, 고갈되면 아무것도 할 수 없다.</p>
+    </div>
+    <div class="p-card dark">
+      <h4>두 갈래의 희귀한 힘</h4>
+      <div class="tagline">RARE · 빛 ⟷ 어둠</div>
+      <div class="elems"><span>빛 — 정화·치유</span><span>어둠 — 부식·저주·파괴</span></div>
+      <p>빛은 신전과 성녀의 것, 어둠은 셀바라스의 핏줄. 둘은 서로를 지운다. 어둠이 짙은 밤과 안개에서는 마물이 기어 나오고, 저주가 깊을수록 그 등급이 오른다. 대륙에서 가장 위험한 곳은 언제나 북부의 설원이다.</p>
+    </div>
+  </div>
+
+</section>
+
+<!-- ═══ 연표 ═══ -->
+<section class="section" id="section-time">
+  <div style="text-align:center;margin-bottom:40px">
+    <span class="eyebrow">Chronicle</span>
+    <h2 class="sec ser" style="margin:0">되돌려야 할 시간</h2>
+  </div>
+
+  <div class="tl">
+    <div class="tl-item">
+      <div class="tl-y lat">413</div>
+      <div class="tl-t ser">공작부인의 의문사<span class="tl-age">6세</span></div>
+      <div class="tl-d">잃어버린 막내를 닮은 아이를 데려온 지 얼마 지나지 않아, 그녀는 사고로 죽는다. 진상은 밝혀지지 않았다. 데미안은 그날 이후 닫혔고, 저택에서 아이는 굴러온 짐이 되었다.</div>
+    </div>
+    <div class="tl-item key">
+      <div class="tl-y lat">417</div>
+      <div class="tl-t ser">회귀 — 두 번째 열 살<span class="tl-age">10세</span></div>
+      <div class="tl-d">가문의 최전성기. 나흘 뒤 황실 무도회를 논하는 대회의실에서 눈을 뜬다. 모두가 살아 있고, 아무도 이 아이가 무엇을 알고 있는지 모른다.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-y lat">427</div>
+      <div class="tl-t ser">몰락의 시작<span class="tl-age">20세</span></div>
+      <div class="tl-d">전생에서 모든 것이 무너지기 시작한 해. 소문이 평판을 갉고, 거래가 끊기고, 우군이 하나씩 사라진 끝에 가문은 역적으로 몰린다.</div>
+    </div>
+    <div class="tl-item end">
+      <div class="tl-y lat">429</div>
+      <div class="tl-t ser">골목 끝의 칼<span class="tl-age">22세</span></div>
+      <div class="tl-d">쫓기고 굶주리다 등에 칼을 맞는다. 누구의 손인지 끝내 알지 못한 채. — 그리고 눈을 뜨면, 다시 417년이다.</div>
+    </div>
+  </div>
+
+  <div class="orn"><i></i><span>◆</span><i></i></div>
+
+  <div class="two" style="max-width:720px;margin:0 auto">
+    <div class="p-card">
+      <h4>아직 풀리지 않은 것</h4>
+      <div class="tagline">MYSTERY</div>
+      <p>공작부인은 왜 죽었는가. 잃어버린 친막내는 어디에 있는가. 그리고 — 어째서 당신은 그 아이와 닮았는가.</p>
+    </div>
+    <div class="p-card dark">
+      <h4>적의 방식</h4>
+      <div class="tagline">HOW IT FALLS</div>
+      <p>평판을 깎고, 동맹을 떼어내고, 먼저 잘못한 것처럼 꾸민다. 고립이 완성된 뒤에야 마지막 수가 온다. 적은 인내심 있고 우아하며, 흔적을 남기지 않는다.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 인물 ═══ -->
+<section class="section" id="section-char">
+  <div class="era-bar">
+    <div class="era-sw">
+      <button id="era-S" class="on" onclick="setEra('S')">유년기 · 417</button>
+      <button id="era-N" onclick="setEra('N')">성인기 · 427</button>
+    </div>
+  </div>
+  <div class="era-note" style="text-align:center;margin-bottom:26px">같은 얼굴, 다른 시간 — 시대를 바꿔 보세요</div>
+
+  <div class="filters" id="filters"></div>
+  <div class="grid" id="grid"></div>
+</section>
+
+</main>
+
+<footer>HOUSE OF SELBARAS · 417</footer>
+
+<!-- ═══ 모달 ═══ -->
+<div id="modal" onclick="if(event.target===this)closeM()">
+  <div class="mbox">
+    <button class="mclose" onclick="closeM()">×</button>
+    <div class="mleft">
+      <div class="mmain"><img id="mImg" src="" alt=""></div>
+      <div class="mthumbs" id="mThumbs"></div>
+    </div>
+    <div class="mright">
+      <div class="mfac lat" id="mFac"></div>
+      <h2 class="mname ser" id="mName"></h2>
+      <div class="mmeta" id="mMeta"></div>
+      <div class="mkeys ser" id="mKeys"></div>
+      <div class="mquote ser" id="mQuote"></div>
+      <div class="msec"><h5>Character</h5><p id="mDesc"></p></div>
+      <div class="msec"><h5>Voice</h5><p id="mVoice"></p></div>
+      <div class="mfate">
+        <div class="ft">前 生 · 당신만이 아는 결말</div>
+        <span class="redact" id="mFate"></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const URL_ = (c,e,s) => `https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/${c}${e}${s}.webp`;
+const STATES = ['P1','L1','L2','L3','L4','L5'];
+
+const FACTIONS = [
+  {k:'ALL',   label:'전체'},
+  {k:'SEL',   label:'셀바라스 가문'},
+  {k:'IMP',   label:'황도 솔드레인'},
+  {k:'CHURCH',label:'아르젠 성교단'},
+  {k:'SOUTH', label:'남부 벨마라'},
+  {k:'NORTH', label:'북부 벨타르'},
+  {k:'EAST',  label:'동부 미레스'},
+  {k:'WEST',  label:'서부 루테른'}
+];
+
+const chars = [
+  // ── 셀바라스 가문 ──
+  { c:'AL', f:'SEL', fac:'SELBARAS', name:'데미안', sex:'♂',
+    ageS:35, ageN:45, jobS:'공작 · 아버지', jobN:'공작 · 아버지',
+    keys:['冷淡','笨拙','深情'],
+    quote:'…알아서 해라.', qs:'걱정을 감출 때는 이렇게 말한다 — "쓸데없이 나서지 마라."',
+    desc:'검보라 머리에 붉은 눈. 아내를 잃은 그날 이후로 닫혔다. 자식을 사랑하지 않는 것이 아니라, 사랑을 표현하는 법을 잃어버린 쪽에 가깝다. 아내가 데려온 막내에게는 시선조차 주지 않는다 — 유품을 마주하는 일이기 때문에.',
+    voice:'무뚝뚝한 반말. 짧게 끊고, 설명하지 않는다.',
+    fate:'그가 마지막까지 무엇을 지키려 했는지, 당신은 알고 있다.' },
+
+  { c:'VE', f:'SEL', fac:'SELBARAS', name:'베이라', sex:'♀',
+    ageS:17, ageN:27, jobS:'첫째', jobN:'첫째',
+    keys:['无表情','守护','笨拙'],
+    quote:'…다치지 마.', qs:'챙길 때는 이렇게 — "먹어. 다 식는다."',
+    desc:'검보라 장발에 붉은 눈. 표정이 거의 움직이지 않는 맏이. 어머니가 데려온 막내를 남처럼 둘 수는 없지만, 어떻게 대해야 할지는 끝내 서툴다. 걱정이 깊어질수록 말수가 줄어든다.',
+    voice:'짧은 반말. 감정이 실릴수록 문장이 더 짧아진다.',
+    fate:'그 밤, 그녀가 가장 마지막까지 서 있던 자리를 당신은 기억한다.' },
+
+  { c:'LU', f:'SEL', fac:'SELBARAS', name:'루시엔', sex:'♂',
+    ageS:14, ageN:24, jobS:'둘째', jobN:'둘째',
+    keys:['温柔','虐性','假面'],
+    quote:'괜찮아? 무리하지 말고.', qs:'…다정한 얼굴 아래, 웃지 않는 눈.',
+    desc:'검보라 웨이브 머리에 금색 눈. 온화하다는 평판과 달리, 사람이 무너지는 광경을 즐긴다. 완벽한 가면이지만 — 진심을 준 상대 앞에서만은 그 가면이 버티지 못한다.',
+    voice:'온화한 반말. 거슬리는 순간 눈만 차가워진다.',
+    fate:'그가 웃으며 감췄던 것들의 값이 언제 청구되었는지, 당신은 안다.' },
+
+  { c:'CA', f:'SEL', fac:'SELBARAS', name:'카엘', sex:'♂',
+    ageS:13, ageN:23, jobS:'셋째', jobN:'셋째',
+    keys:['油嘴','热血','纯直'],
+    quote:'헐 대박, 진짜?!', qs:'발끈하면 — "야, 그건 좀 아니지 않냐?"',
+    desc:'검보라 머리에 금색 눈, 성인이 되면 하나로 묶는다. 머리보다 몸이 먼저 나가는 성격에 시비는 전부 받아준다. 막내를 놀려먹는 것이 일상이지만, 악의라기보단 그저 무심함에 가깝다.',
+    voice:'실없고 가벼운 반말. 너스레와 과장된 리액션, 욱하면 커지는 목소리.',
+    fate:'끝까지 주먹을 쥐고 있던 사람이 누구였는지, 당신은 봤다.' },
+
+  { c:'AS', f:'SEL', fac:'SELBARAS', name:'아스트라', sex:'♀',
+    ageS:17, ageN:27, jobS:'기사단장', jobN:'기사단장',
+    keys:['傲慢','实力','反差'],
+    quote:'에~ 그것도 못 해?', qs:'밀리기 시작하면 — "…뭐야. 왜 웃어."',
+    desc:'금발에 금색 눈. 실력으로 기사단장 자리를 얻었고 그만큼 오만하다. 막내를 얕보고 놀리는 이유는 단순하다 — 굴러들어온 처지가 예전의 자신과 꼭 닮았기 때문에.',
+    voice:'공작 앞에서는 존댓말, 막내에게는 건방진 반말.',
+    fate:'검을 내려놓지 않은 채 어디까지 갔는지, 당신만이 알고 있다.' },
+
+  { c:'RN', f:'SEL', fac:'SELBARAS', name:'렌', sex:'♂',
+    ageS:23, ageN:33, jobS:'집사', jobN:'집사',
+    keys:['温顺','冷酷','忠诚'],
+    quote:'제가 지켜드리겠습니다.', qs:'임무에 들어가면 — "…처리하고 오겠습니다."',
+    desc:'한쪽으로 내려묶은 갈색 머리에 초록빛 눈. 가문 최강의 암살자이면서, 저택에서 가장 나긋한 사람. 아이가 거둬진 날부터 곁을 지켜온 유일한 보호자이며, 칼끝은 언제나 막내를 지키는 방향을 향한다.',
+    voice:'나긋한 반말. 임무 중에는 온도가 사라진다.',
+    fate:'"도망쳐, 어서." — 등을 떠민 그 손을, 당신은 돌아보지 못했다.' },
+
+  // ── 황도 ──
+  { c:'CS', f:'IMP', fac:'SOLDRAIN', name:'카이우스 솔드레인', sex:'♂',
+    ageS:27, ageN:37, jobS:'황제', jobN:'황제',
+    keys:['狡黠','算计','孤独'],
+    quote:'이거 참, 재밌는 분이시군요.', qs:'떠볼 때는 — "그래서, 무엇을 원하십니까?"',
+    desc:'붉은 장발에 붉은 눈. 권력의 정점에 있으나 부패한 귀족연합에 스스로도 묶여 있다. 누구도 믿지 않으며, 그 고립을 농담처럼 감춘다. 셀바라스를 두려워하면서 음지에서만 견제한다.',
+    voice:'항상 존댓말. 상대가 누구든 무너지지 않는 어조.',
+    fate:'그가 어느 편에 서 있었는지 — 그 답을 당신은 너무 늦게 알았다.' },
+
+  { c:'EA', f:'CHURCH', fac:'ARGEN', name:'엘리아나', sex:'♀',
+    ageS:12, ageN:22, jobS:'성녀', jobN:'성녀',
+    keys:['温柔','压抑','真实渴'],
+    quote:'무슨 일이신지요.', qs:'사적인 자리에서는 또래처럼 — "있잖아, 너무한 거 아니야?"',
+    desc:'분홍빛 장발에 푸른 눈. 빛의 권능을 지녔으나 평민 출신이라 교단의 공기가 늘 불편하다. 단정한 성녀의 얼굴 아래, 억눌린 진짜 자신이 숨을 참고 있다.',
+    voice:'성녀로서는 정중한 존댓말, 마음을 연 상대에게는 또래의 반말.',
+    fate:'그녀의 기도가 누구를 향했는지, 이제 당신은 짐작한다.' },
+
+  { c:'RZ', f:'IMP', fac:'SOLDRAIN', name:'리제트 로즈번', sex:'♀',
+    ageS:10, ageN:20, jobS:'황도 영애', jobN:'황도 영애',
+    keys:['开朗','活泼','意外强'],
+    quote:'야야, 이거 봤어?!', qs:'시무룩해지면 — "…나 두고 가는 거야?"',
+    desc:'주황색 트윈테일에 하늘색 눈. 어둠 가문이라는 소문 따위 아랑곳 않고 다가온, 막내의 첫 또래 친구. 천진해 보이지만 의외로 강하다.',
+    voice:'느낌표가 붙는 반말. 신이 나면 말보다 손이 먼저 나간다.',
+    fate:'끝까지 편이었던 사람은 생각보다 적었고, 그중 하나는 이 아이였다.' },
+
+  // ── 남부 ──
+  { c:'DV', f:'SOUTH', fac:'BELMARA', name:'데이브 드 크레스티안', sex:'♂',
+    ageS:25, ageN:35, jobS:'남부 제독', jobN:'남부 제독',
+    keys:['豪爽','油滑','外柔内刚'],
+    quote:'어이, 좀 쉬면서 해!', qs:'진지해지면 — "…그래서, 뭐가 필요한데."',
+    desc:'구릿빛 피부에 흑발, 금색 눈. 항구를 장악한 제독. 능글맞은 농담 뒤에 외유내강의 심지가 있고, 정든 인연을 스스로 잘라내 온 외로움도 있다.',
+    voice:'호탕하고 능글맞은 반말. 장난이 잦다.',
+    fate:'바다를 등지고 그가 내린 선택을, 당신은 뒤늦게 이해했다.' },
+
+  { c:'AD', f:'SOUTH', fac:'BELMARA', name:'에드릭', sex:'♂',
+    ageS:13, ageN:23, jobS:'제독 부관', jobN:'제독 부관',
+    keys:['冷静','细心','笨嘴'],
+    quote:'…이거 드시죠.', qs:'당황하면 — "그, 그건… 제 말은…"',
+    desc:'파란 머리에 회색 눈. 제독이 거둔 아이. 말보다 먼저 챙기는 쪽이고, 냉정해 보이는 얼굴과 달리 제독을 위해 요리를 연구한다. 마음을 들키면 말이 엉킨다.',
+    voice:'단정한 존댓말. 필요한 말만, 그러나 늘 먼저 움직인다.',
+    fate:'그가 끝까지 지키려 한 사람이 누구였는지는 변하지 않았다.' },
+
+  // ── 북부 ──
+  { c:'KL', f:'NORTH', fac:'VELTAR', name:'케일런 벨타르', sex:'♂',
+    ageS:25, ageN:35, jobS:'북부 대공', jobN:'북부 대공',
+    keys:['寡言','坚韧','柔软'],
+    quote:'놔둬.', qs:'물러설 때는 — "…가까이 오지 마."',
+    desc:'은발에 덥수룩한 머리, 하늘색 눈. 설원에 유폐된 대공. 대륙에서 가장 위험한 땅을 홀로 버텨내면서도, 정작 무언가를 잃을까 두려워 먼저 물러선다.',
+    voice:'짧은 반말. 감정이 흔들리면 시선부터 돌린다.',
+    fate:'설원 밖으로 그가 끝내 나오지 않은 이유를, 당신은 안다.' },
+
+  // ── 동부 ──
+  { c:'OR', f:'EAST', fac:'MIRES', name:'오린', sex:'♂',
+    ageS:13, ageN:23, jobS:'마탑 천재', jobN:'마탑주',
+    keys:['胆怯','天才','封闭'],
+    quote:'그건… 안 만지시는 게 좋아요.', qs:'마법 앞에서만은 — "이건 제가 합니다."',
+    desc:'백발에 보라색 눈, 마력 억제 초커를 두르고 있다. 사람 앞에서는 겁이 많지만 마법에 관해서는 대륙 최고. 무언가 어긋났다는 걸 가장 먼저 눈치챌 사람이기도 하다.',
+    voice:'늘 조심스러운 존댓말. 마법 이야기에서만 어조가 단단해진다.',
+    fate:'그가 계산해낸 결말이 왜 아무에게도 전해지지 않았는지.' },
+
+  // ── 서부 ──
+  { c:'GR', f:'WEST', fac:'LUTERN', name:'가레사', sex:'♀',
+    ageS:25, ageN:35, jobS:'서부 상단주', jobN:'서부 상단주',
+    keys:['享乐','好胜','外硬内软'],
+    quote:'재밌겠네, 놀아볼까?', qs:'진심 앞에서는 — "…됐어. 그만 봐."',
+    desc:'흑발에 붉은 눈. 교역과 정보, 암시장을 쥔 상단주. 중립을 말하지만 돈 앞에서는 누구와도 손을 잡는다. 셀바라스의 최고 고객이자, 최대의 위험 요소.',
+    voice:'거친 반말. 거래가 시작되면 입꼬리가 올라간다.',
+    fate:'그녀가 마지막으로 팔지 않은 것이 무엇이었는지.' },
+];
+
+let era='S', filter='ALL';
+
+function tab(id){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  document.getElementById('section-'+id).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function setEra(e){
+  era=e;
+  document.getElementById('era-S').classList.toggle('on',e==='S');
+  document.getElementById('era-N').classList.toggle('on',e==='N');
+  render();
+}
+function setFilter(k){filter=k;render()}
+
+document.getElementById('filters').innerHTML = FACTIONS.map(f=>
+  `<button class="filter-btn${f.k==='ALL'?' active':''}" data-k="${f.k}" onclick="setFilter('${f.k}')">${f.label}</button>`
+).join('');
+
+function render(){
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.toggle('active',b.dataset.k===filter));
+  const list = filter==='ALL' ? chars : chars.filter(c=>c.f===filter);
+  document.getElementById('grid').innerHTML = list.map(c=>{
+    const i = chars.indexOf(c);
+    return `<div class="card" onclick="openM(${i})">
+      <div class="fr">
+        <span class="era-tag">${era==='S'?'417':'427'}</span>
+        <img src="${URL_(c.c,era,'P1')}" alt="${c.name}" loading="lazy">
+      </div>
+      <div class="txt">
+        <div class="fac lat">${c.fac}</div>
+        <div class="nm ser">${c.name.split(' ')[0]}</div>
+        <div class="job">${era==='S'?c.jobS:c.jobN} · ${era==='S'?c.ageS:c.ageN}세</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function openM(i){
+  const c = chars[i];
+  document.getElementById('mImg').src = URL_(c.c,era,'P1');
+  document.getElementById('mFac').innerText = c.fac;
+  document.getElementById('mName').innerText = c.name;
+  document.getElementById('mMeta').innerText =
+    `${c.sex} · ${era==='S'?c.ageS:c.ageN}세 · ${era==='S'?c.jobS:c.jobN} · ${era==='S'?'417년':'427년'}`;
+  document.getElementById('mKeys').innerHTML = c.keys.map(k=>`<span>${k}</span>`).join('');
+  document.getElementById('mQuote').innerHTML = `"${c.quote}"<small>${c.qs}</small>`;
+  document.getElementById('mDesc').innerText = c.desc;
+  document.getElementById('mVoice').innerText = c.voice;
+  document.getElementById('mFate').innerText = c.fate;
+  document.getElementById('mThumbs').innerHTML = STATES.map((s,n)=>
+    `<img src="${URL_(c.c,era,s)}" class="${n===0?'on':''}" onclick="swap(this,'${URL_(c.c,era,s)}')" alt="">`
+  ).join('');
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function swap(el,src){
+  document.getElementById('mImg').src=src;
+  document.querySelectorAll('#mThumbs img').forEach(t=>t.classList.remove('on'));
+  el.classList.add('on');
+}
+function closeM(){
+  document.getElementById('modal').classList.remove('open');
+  document.body.style.overflow='auto';
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeM()});
+render();
+</script>
+</body>
+</html>
