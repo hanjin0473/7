@@ -128,26 +128,213 @@ h2.sec{font-family:'Noto Serif KR',serif;font-weight:700;font-size:20px;letter-s
 .hero-card p:last-child{margin-bottom:0}
 .hero-card b{color:var(--gold-l);font-weight:500}
 
-.f-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px}
-.f-card{background:var(--ivory-2);border:1px solid rgba(168,133,63,.4);padding:9px 9px 20px;position:relative;transition:.3s}
-.f-card:hover{border-color:var(--gold);transform:translateY(-3px)}
-.f-img{position:relative;aspect-ratio:16/10;overflow:hidden;background:#ded3bf;margin-bottom:14px}
-.f-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s;filter:saturate(.85)}
-.f-card:hover .f-img img{transform:scale(1.05)}
-.f-img::after{content:'';position:absolute;inset:0;border:1px solid rgba(255,255,255,.25);pointer-events:none}
-.f-img .dir{
-  position:absolute;top:0;left:0;z-index:2;background:var(--ivory-2);color:var(--gold);
-  font-family:'Noto Serif KR',serif;font-weight:900;font-size:15px;
-  width:28px;height:28px;display:flex;align-items:center;justify-content:center
+/* ── 세력 카드 강화 ── */
+.f-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:22px;
 }
-.f-body{padding:0 11px}
-.f-card h4{font-family:'Noto Serif KR',serif;font-weight:700;font-size:15.5px;margin-bottom:4px;letter-spacing:.04em}
-.f-card .role{font-size:11px;color:var(--gold);letter-spacing:.16em;margin-bottom:9px}
-.f-card p{font-size:12.5px;color:#5c5348}
-.f-card.core{background:var(--dark);border-color:var(--gold)}
-.f-card.core .f-img .dir{background:var(--dark);color:var(--gold-l)}
-.f-card.core h4{color:#ece0cb}
-.f-card.core p{color:#b7ab97}
+
+.f-card{
+  background:var(--ivory-2);
+  border:1px solid rgba(168,133,63,.4);
+  padding:11px 11px 24px;
+  position:relative;
+  transition:.3s;
+  min-width:0;
+}
+
+.f-card:hover{
+  border-color:var(--gold);
+  transform:translateY(-3px);
+}
+
+.f-img{
+  position:relative;
+  width:100%;
+  aspect-ratio:16/9;
+  overflow:hidden;
+  background:#ded3bf;
+  margin-bottom:18px;
+}
+
+.f-img img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:transform .6s;
+  filter:saturate(.88) contrast(1.02);
+}
+
+.f-card:hover .f-img img{
+  transform:scale(1.035);
+}
+
+.f-img::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  border:1px solid rgba(255,255,255,.25);
+  pointer-events:none;
+}
+
+.f-img .dir{
+  position:absolute;
+  top:0;
+  left:0;
+  z-index:2;
+  background:var(--ivory-2);
+  color:var(--gold);
+  font-family:'Noto Serif KR',serif;
+  font-weight:700;
+  font-size:11px;
+  letter-spacing:.06em;
+  min-width:44px;
+  height:30px;
+  padding:0 9px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.f-body{
+  padding:0 14px;
+}
+
+.f-card h4{
+  font-family:'Noto Serif KR',serif;
+  font-weight:700;
+  font-size:17px;
+  margin-bottom:5px;
+  letter-spacing:.04em;
+}
+
+.f-card .role{
+  font-size:11px;
+  color:var(--gold);
+  letter-spacing:.14em;
+  margin-bottom:11px;
+  font-weight:600;
+}
+
+.f-card p{
+  font-size:13px;
+  line-height:1.8;
+  color:#5c5348;
+}
+
+.f-card.core{
+  background:var(--dark);
+  border-color:var(--gold);
+}
+
+.f-card.core .f-img .dir{
+  background:var(--dark);
+  color:var(--gold-l);
+}
+
+.f-card.core h4{
+  color:#ece0cb;
+}
+
+.f-card.core p{
+  color:#b7ab97;
+}
+
+/* 태블릿 */
+@media(max-width:820px){
+  .f-grid{
+    gap:16px;
+  }
+
+  .f-card{
+    padding:9px 9px 20px;
+  }
+
+  .f-body{
+    padding:0 9px;
+  }
+
+  .f-card h4{
+    font-size:15.5px;
+  }
+
+  .f-card p{
+    font-size:12.5px;
+  }
+}
+
+/* 모바일 */
+@media(max-width:640px){
+
+  .f-grid{
+    grid-template-columns:1fr;
+    gap:18px;
+  }
+
+  .f-card{
+    padding:9px 9px 21px;
+  }
+
+  .f-img{
+    aspect-ratio:16/9;
+    margin-bottom:14px;
+  }
+
+  .f-body{
+    padding:0 10px;
+  }
+
+  /* 기존 모바일 설정들 계속 */
+}
+
+  header{
+    padding:28px 14px 0;
+  }
+
+  main{
+    padding:34px 14px 70px;
+  }
+
+  nav{
+    justify-content:flex-start;
+    gap:24px;
+    padding:0 10px;
+    scrollbar-width:none;
+  }
+
+  nav::-webkit-scrollbar{
+    display:none;
+  }
+
+  .tab-btn{
+    font-size:12px;
+    padding:13px 1px;
+    letter-spacing:.18em;
+  }
+
+  .hero-card{
+    padding:24px 20px;
+    margin-bottom:34px;
+  }
+
+  .hero-card h3{
+    font-size:17px;
+  }
+
+  .hero-card p{
+    font-size:12.8px;
+    line-height:1.8;
+  }
+
+  h2.sec{
+    font-size:18px;
+  }
+
+  .orn{
+    margin:34px 0;
+  }
+}
 
 .two{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
 .p-card{background:var(--ivory-2);border:1px solid rgba(168,133,63,.4);padding:24px}
@@ -397,106 +584,106 @@ footer{text-align:center;padding:0 20px 46px;font-family:'Cormorant Garamond',se
         <span class="dir ser">중앙</span>
         <img src="https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/BG_SEL.webp" alt="셀바라스 공작령" loading="lazy">
       </div>
-      <div class="f-body">
-        <h4>셀바라스 공작령</h4>
-        <div class="role" style="color:var(--gold-l)">어둠 · 독립 공작령</div>
-        <p>
-          모두가 꺼리고, 누구도 쉽게 건드리지 못하는 가문.
-          황도와 가장 가까우면서도 가장 고립되어 있다.
-        </p>
-      </div>
-    </div>
-
+<div class="f-body">
+  <h4>셀바라스 공작령</h4>
+  <div class="role" style="color:var(--gold-l)">어둠 · 독립 공작령</div>
+  <p>
+    대륙에서 가장 꺼려지는 어둠의 혈통을 이어온 공작가.
+    황도 가까이에 자리하면서도 어느 세력에도 완전히 속하지 않는다.
+    두려움과 경계 속에서도 누구도 쉽게 건드리지 못할 만큼 강대한 힘을 유지하고 있다.
+  </p>
+</div>
+  </div>
     <div class="f-card">
       <div class="f-img">
         <span class="dir ser">중앙</span>
         <img src="https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/BG_IMP.webp" alt="솔드레인 황궁" loading="lazy">
       </div>
-      <div class="f-body">
-        <h4>솔드레인 황궁</h4>
-        <div class="role">황제 · 귀족연합</div>
-        <p>
-          대륙에서 가장 높은 자리.
-          그러나 황제의 뜻조차 귀족들의 이해관계에서 완전히 자유롭지는 않다.
-        </p>
-      </div>
-    </div>
-
+<div class="f-body">
+  <h4>솔드레인 황궁</h4>
+  <div class="role">황제 · 귀족연합 · 권력</div>
+  <p>
+    제국의 법과 권력이 모이는 중심.
+    황제는 가장 높은 자리에 앉아 있지만, 오래된 귀족 가문들의 이해관계를 완전히 무시할 수는 없다.
+    화려한 궁정 아래에서는 매일같이 동맹과 견제가 오간다.
+  </p>
+</div>
+  </div>
     <div class="f-card">
       <div class="f-img">
         <span class="dir ser">중앙</span>
         <img src="https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/BG_CHR.webp" alt="아르젠 성교단" loading="lazy">
       </div>
-      <div class="f-body">
-        <h4>아르젠 성교단</h4>
-        <div class="role">빛 · 정화 · 성녀</div>
-        <p>
-          빛을 신성시하고 어둠을 정화해야 할 것으로 가르친다.
-          셀바라스를 향한 오래된 혐오는 이곳에서 신앙이 되었다.
-        </p>
-      </div>
-    </div>
-
+<div class="f-body">
+  <h4>아르젠 성교단</h4>
+  <div class="role">빛 · 정화 · 성녀</div>
+  <p>
+    빛의 권능을 신성시하는 대륙 최대의 종교 세력.
+    치유와 정화를 맡는 동시에 어둠을 불길한 힘으로 규정해 왔다.
+    셀바라스를 향한 오래된 두려움과 배척에도 그 교리가 깊게 얽혀 있다.
+  </p>
+</div>
+  </div>
     <div class="f-card">
       <div class="f-img">
         <span class="dir ser">북부</span>
         <img src="https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/BG_NOR.webp" alt="벨타르 대공령" loading="lazy">
       </div>
-      <div class="f-body">
-        <h4>벨타르 대공령</h4>
-        <div class="role">설원 · 변경 · 유폐</div>
-        <p>
-          황도에서 버려진 대공과 얼어붙은 변경.
-          지원은 끊겼지만 북부의 마물은 여전히 이곳에서 막힌다.
-        </p>
-      </div>
-    </div>
-
+<div class="f-body">
+  <h4>벨타르 대공령</h4>
+  <div class="role">설원 · 변경 · 마물</div>
+  <p>
+    끝없는 설원과 마물의 최전선에 자리한 북부 변경.
+    황도의 지원은 거의 끊겼지만, 벨타르는 스스로 성벽과 군대를 유지하며 살아남았다.
+    이곳이 무너지면 북부의 마물이 그대로 남하한다.
+  </p>
+</div>
+  </div>
     <div class="f-card">
       <div class="f-img">
         <span class="dir ser">남부</span>
         <img src="https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/BG_SOU.webp" alt="벨마라 항구" loading="lazy">
       </div>
-      <div class="f-body">
-        <h4>벨마라 항구</h4>
-        <div class="role">해군 · 무역 · 바다</div>
-        <p>
-          황실의 깃발을 달고 있지만,
-          바다에서는 제독의 명령이 곧 법이다.
-        </p>
-      </div>
-    </div>
-
+<div class="f-body">
+  <h4>벨마라 항구</h4>
+  <div class="role">해군 · 무역 · 항구</div>
+  <p>
+    대륙 남부의 물자와 사람이 모이는 거대한 자유항.
+    공식적으로는 황실의 영토지만 바다에서는 제독의 명령이 황명보다 빠르다.
+    해군과 상선이 얽힌 만큼 정보와 밀수도 끊이지 않는다.
+  </p>
+</div>
+  </div>
     <div class="f-card">
       <div class="f-img">
         <span class="dir ser">동부</span>
         <img src="https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/BG_EAS.webp" alt="미레스 마탑" loading="lazy">
       </div>
-      <div class="f-body">
-        <h4>미레스 마탑</h4>
-        <div class="role">마법 · 연구 · 지식</div>
-        <p>
-          황제도 성녀도 이들에게는 연구 대상일 뿐이다.
-          정치보다 진실을, 명령보다 지식을 우선한다.
-        </p>
-      </div>
-    </div>
-
+<div class="f-body">
+  <h4>미레스 마탑</h4>
+  <div class="role">마법 · 연구 · 지식</div>
+  <p>
+    마법과 고대 지식을 연구하는 동부의 학술 중심지.
+    정치적 중립을 고수하며 황제의 명령조차 연구의 가치보다 우선하지 않는다.
+    세상에 알려지지 않은 현상과 기록들이 가장 많이 쌓인 곳이기도 하다.
+  </p>
+</div>
+  </div>
     <div class="f-card">
       <div class="f-img">
         <span class="dir ser">서부</span>
         <img src="https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/BG_WES.webp" alt="루테른 상단" loading="lazy">
       </div>
-      <div class="f-body">
-        <h4>루테른 상단</h4>
-        <div class="role">교역 · 정보 · 암시장</div>
-        <p>
-          돈만 내면 무엇이든 구할 수 있다.
-          물건도, 정보도 — 때로는 사람의 비밀까지도.
-        </p>
-      </div>
-    </div>
-
+<div class="f-body">
+  <h4>루테른 상단</h4>
+  <div class="role">교역 · 정보 · 암시장</div>
+  <p>
+    서부의 돈과 정보가 모이는 거대한 상업 조직.
+    귀족의 사치품부터 금지된 물건과 비밀까지, 값을 치를 수 있다면 대부분 손에 넣을 수 있다.
+    어느 편도 아니지만 가장 높은 값을 부르는 자에게는 누구보다 좋은 동맹이 된다.
+  </p>
+</div>
+  </div>
   </div>
 
   <div class="orn"><i></i><span>◆</span><i></i></div>
@@ -926,8 +1113,9 @@ function openM(i){
   document.getElementById('mImg').src = URL_(c.c,era,'P1');
   document.getElementById('mFac').innerText = c.fac;
   document.getElementById('mName').innerText = c.name;
-  document.getElementById('mMeta').innerText =
-    `${c.sex} · ${era==='S'?c.ageS:c.ageN}세 · ${era==='S'?c.jobS:c.jobN} · ${era==='S'?'417년':'427년'}`;
+document.getElementById('mMeta').innerText =
+  `${c.sex} · ${era==='S'?c.ageS:c.ageN}세 · ${era==='S'?c.jobS:c.jobN} · ${c.mbti}` +
+  (era==='N' ? ` · ${c.height}cm · ${c.weight}kg` : '');
   document.getElementById('mKeys').innerHTML = c.keys.map(k=>`<span>${k}</span>`).join('');
 document.getElementById('mQuote').innerHTML = `"${c.quote}"`;
 document.getElementById('mDesc').innerText = c.desc;
