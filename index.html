@@ -285,9 +285,6 @@ h2.sec{font-family:'Noto Serif KR',serif;font-weight:700;font-size:20px;letter-s
     padding:0 10px;
   }
 
-  /* 기존 모바일 설정들 계속 */
-}
-
   header{
     padding:28px 14px 0;
   }
@@ -398,26 +395,125 @@ h2.sec{font-family:'Noto Serif KR',serif;font-weight:700;font-size:20px;letter-s
 .card .job{font-size:11px;color:var(--ink-l)}
 
 /* ── 모달 ── */
-#modal{position:fixed;inset:0;z-index:900;display:none;align-items:center;justify-content:center;background:rgba(23,19,16,.86);padding:0}
+/* 그림을 위에 크게, 설명을 아래에 두어 인물을 더 멀리서 볼 수 있게 구성 */
+#modal{
+  position:fixed;
+  inset:0;
+  z-index:900;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  background:rgba(23,19,16,.86);
+  padding:24px;
+}
 #modal.open{display:flex}
-.mbox{background:var(--ivory);width:100%;max-width:920px;max-height:100vh;overflow:hidden;display:flex;flex-direction:column;position:relative;border:1px solid var(--gold)}
-@media(min-width:768px){#modal{padding:24px}.mbox{flex-direction:row;max-height:86vh}}
-.mclose{position:absolute;top:10px;right:16px;z-index:5;background:none;border:none;font-size:28px;color:var(--ink-l);cursor:pointer;line-height:1;font-weight:300}
-.mclose:hover{color:var(--blood)}
-.mleft{background:var(--ivory-2);padding:16px;flex-shrink:0;display:flex;flex-direction:column;gap:10px}
-@media(min-width:768px){.mleft{width:38%}}
-.mmain{flex:1;min-height:290px;overflow:hidden;position:relative;background:#ded3bf}
-.mmain img{width:100%;height:100%;object-fit:cover}
-.mthumbs{display:flex;gap:7px;overflow-x:auto}
-.mthumbs img{width:46px;height:62px;object-fit:cover;cursor:pointer;opacity:.5;border:1px solid transparent;flex-shrink:0;transition:.2s}
-.mthumbs img.on{opacity:1;border-color:var(--gold)}
-.mright{flex:1;padding:34px 34px 30px;overflow-y:auto}
-.mright::-webkit-scrollbar{width:3px}
-.mright::-webkit-scrollbar-thumb{background:var(--gold)}
+
+.mbox{
+  background:var(--ivory);
+  width:min(920px,100%);
+  max-height:92vh;
+  overflow-y:auto;
+  overflow-x:hidden;
+  display:flex;
+  flex-direction:column;
+  position:relative;
+  border:1px solid var(--gold);
+  overscroll-behavior:contain;
+}
+.mbox::-webkit-scrollbar{width:4px}
+.mbox::-webkit-scrollbar-thumb{background:var(--gold)}
+
+/* 닫기 버튼 */
+.mclose{
+  position:absolute;
+  top:14px;
+  right:14px;
+  z-index:20;
+  width:44px;
+  height:44px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:1px solid rgba(201,169,97,.75);
+  border-radius:50%;
+  background:rgba(23,19,16,.82);
+  color:#f4eee1;
+  font-size:30px;
+  line-height:1;
+  font-weight:300;
+  cursor:pointer;
+  box-shadow:0 4px 18px rgba(0,0,0,.22);
+  backdrop-filter:blur(4px);
+}
+.mclose:hover{
+  background:var(--blood);
+  color:#fff;
+  border-color:var(--blood);
+}
+
+/* 상단 이미지 영역 */
+.mleft{
+  width:100%;
+  background:var(--ivory-2);
+  padding:16px 16px 12px;
+  flex-shrink:0;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.mmain{
+  width:100%;
+  height:min(58vh,560px);
+  min-height:420px;
+  overflow:hidden;
+  position:relative;
+  background:#ded3bf;
+  border:1px solid rgba(168,133,63,.26);
+}
+
+/* cover 대신 contain → 원본 인물을 가능한 한 많이 보여줌 */
+.mmain img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  object-position:center center;
+  display:block;
+}
+
+/* 감정 썸네일 */
+.mthumbs{
+  display:flex;
+  justify-content:center;
+  gap:8px;
+  overflow-x:auto;
+  padding:2px 0;
+}
+.mthumbs img{
+  width:50px;
+  height:66px;
+  object-fit:cover;
+  cursor:pointer;
+  opacity:.5;
+  border:1px solid transparent;
+  flex-shrink:0;
+  transition:.2s;
+}
+.mthumbs img.on{
+  opacity:1;
+  border-color:var(--gold);
+}
+
+/* 하단 설명 영역 */
+.mright{
+  width:100%;
+  padding:30px 38px 36px;
+  overflow:visible;
+}
 .mfac{font-family:'Cormorant Garamond',serif;font-size:11px;letter-spacing:.4em;color:var(--gold);text-transform:uppercase}
 .mname{font-family:'Noto Serif KR',serif;font-weight:900;font-size:29px;letter-spacing:.06em;margin:5px 0 2px}
 .mmeta{font-size:12px;color:var(--ink-l);letter-spacing:.1em;margin-bottom:18px}
-.mkeys{display:flex;gap:8px;margin-bottom:18px}
+.mkeys{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
 .mkeys span{font-family:'Noto Serif KR',serif;font-size:13px;color:var(--gold);border:1px solid rgba(168,133,63,.5);padding:2px 12px}
 .mquote{
   font-family:'Noto Serif KR',serif;font-style:italic;font-size:15px;color:var(--ink);
@@ -438,7 +534,63 @@ footer{text-align:center;padding:0 20px 46px;font-family:'Cormorant Garamond',se
 @media(max-width:640px){
   .two{grid-template-columns:1fr}
   .hero-card{padding:28px 22px}
-  .mright{padding:26px 22px}
+
+  #modal{
+    align-items:flex-start;
+    padding:0;
+  }
+
+  .mbox{
+    width:100%;
+    max-height:100dvh;
+    min-height:100dvh;
+    border-left:0;
+    border-right:0;
+    border-top:0;
+  }
+
+  /* 모바일에서는 화면 우측 상단에 고정: 스크롤해도 X가 사라지지 않음 */
+  .mclose{
+    position:fixed;
+    top:max(12px, env(safe-area-inset-top));
+    right:max(12px, env(safe-area-inset-right));
+    width:48px;
+    height:48px;
+    font-size:32px;
+    background:rgba(23,19,16,.9);
+  }
+
+  .mleft{
+    padding:0 0 12px;
+  }
+
+  .mmain{
+    height:min(66vh,620px);
+    min-height:360px;
+    border:0;
+  }
+
+  .mthumbs{
+    justify-content:flex-start;
+    padding:0 14px 2px;
+  }
+
+  .mthumbs img{
+    width:52px;
+    height:70px;
+  }
+
+  .mright{
+    padding:26px 20px 38px;
+  }
+
+  .mname{
+    font-size:25px;
+  }
+
+  .mkeys{
+    gap:6px;
+  }
 }
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
