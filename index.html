@@ -803,7 +803,7 @@ footer{text-align:center;padding:0 20px 46px;font-family:'Cormorant Garamond',se
     </p>
     <p>
       귀족들은 그들을 불길하다 말하고,
-      아르젠 성교단은 경계하며,
+      아르젠 교단은 경계하며,
       황실조차 공개적으로는 쉽게 손대지 않는다.
     </p>
     <p>
@@ -850,10 +850,10 @@ footer{text-align:center;padding:0 20px 46px;font-family:'Cormorant Garamond',se
     <div class="f-card">
       <div class="f-img">
         <span class="dir ser">중앙</span>
-        <img src="https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/BG_CHR.webp" alt="아르젠 성교단" loading="lazy">
+        <img src="https://pub-1ff16a5c9ef048e3ab851e262c07ba57.r2.dev/BG_CHR.webp" alt="아르젠 교단" loading="lazy">
       </div>
 <div class="f-body">
-  <h4>아르젠 성교단</h4>
+  <h4>아르젠 교단</h4>
   <div class="role">빛 · 정화 · 성녀</div>
   <p>
     빛의 권능을 신성시하는 대륙 최대의 종교 세력.
@@ -952,7 +952,7 @@ footer{text-align:center;padding:0 20px 46px;font-family:'Cormorant Garamond',se
         빛과 어둠은 극히 드문 힘이며 서로를 상쇄한다.
       </p>
       <p>
-        빛의 권능은 주로 아르젠 성교단과 성녀에게 나타나고,
+        빛의 권능은 주로 아르젠 교단과 성녀에게 나타나고,
         어둠은 오랫동안 셀바라스의 혈통에서 이어져 왔다.
       </p>
     </div>
@@ -1113,11 +1113,11 @@ footer{text-align:center;padding:0 20px 46px;font-family:'Cormorant Garamond',se
       <div class="mkeys ser" id="mKeys"></div>
       <div class="mquote ser" id="mQuote"></div>
       <div class="msec"><h5>Character</h5><p id="mDesc"></p></div>
-      <div class="msec"><h5>Voice</h5><p id="mVoice"></p></div>
-      <div class="mfate">
-        <div class="ft">의문점</div>
-        <span class="redact" id="mFate"></span>
-      </div>
+      <div class="msec"><h5>Point</h5><p id="mPoint"></p></div>
+<div class="mfate">
+  <div class="ft">남겨진 기록</div>
+  <span class="redact" id="mRecord"></span>
+</div>
     </div>
   </div>
 </div>
@@ -1130,7 +1130,7 @@ const FACTIONS = [
   {k:'ALL',   label:'전체'},
   {k:'SEL',   label:'셀바라스 가문'},
   {k:'IMP',   label:'황도 솔드레인'},
-  {k:'CHURCH',label:'아르젠 성교단'},
+  {k:'CHURCH',label:'아르젠 교단'},
   {k:'SOUTH', label:'남부 벨마라'},
   {k:'NORTH', label:'북부 벨타르'},
   {k:'EAST',  label:'동부 미레스'},
@@ -1138,7 +1138,8 @@ const FACTIONS = [
 ];
 
 const chars = [
-  // ── 셀바라스 ──
+
+// ── 셀바라스 ──
 
 { c:'AL', f:'SEL', fac:'SELBARAS', name:'데미안', sex:'♂',
   ageS:35, ageN:45, height:187, weight:80,
@@ -1147,8 +1148,8 @@ const chars = [
   keys:['냉담','완고','서툰애정'],
   quote:'…알아서 해라.',
   desc:'냉담하고 완고하며, 걱정할수록 오히려 더 차갑게 구는 사람. 젊어서 공작위를 이어 셀바라스를 최강으로 끌어올렸으나 사랑하던 아내를 의문의 사고로 잃은 뒤 마음을 닫았다. 아내가 데려온 막내를 유품처럼 느껴 오래 외면했고, 자식을 돌보지 못했다는 죄책감도 품고 있다. 가족을 사랑하지만 표현하는 법을 잃었으며, 한번 정한 책임은 자신이 망가져도 끝까지 짊어진다.',
-  voice:'낮고 묵직한 반말. 짧게 끊으며 감정을 거의 싣지 않는다.',
-  mystery:'그는 마지막까지 무엇을 혼자 감당하고 있었을까?' },
+  point:'가족 앞에서는 표현이 서툴지만, 책임을 떠넘기는 법이 없다.',
+  record:'몰락 직전부터 누구에게도 알리지 않은 일을 혼자 처리하고 있었다.' },
 
 
 { c:'VE', f:'SEL', fac:'SELBARAS', name:'베이라', sex:'♀',
@@ -1158,8 +1159,8 @@ const chars = [
   keys:['무표정','과묵','보호본능'],
   quote:'…다치지 마.',
   desc:'무표정하고 과묵하지만, 한번 자신의 사람이라 여기면 끝까지 지키는 사람. 레이피어를 이용한 빠르고 정교한 검술은 가문에서도 손꼽힌다. 막내를 가족으로 생각하면서도 어떻게 다정하게 대해야 할지 몰라 늘 행동으로만 챙긴다. 의외로 엄청난 대식가이며, 걱정이 심해질수록 말수는 더 줄어든다.',
-  voice:'평탄하고 건조한 반말. 감정이 강해질수록 문장이 짧아진다.',
-  mystery:'그날 그녀는 누구를 지키기 위해 검을 들었을까?' },
+  point:'엄청난 대식가. 걱정이 심할수록 말수가 더 줄어든다.',
+  record:'저택이 무너지던 밤, 마지막으로 검을 들고 향한 곳은 확인하지 못했다.' },
 
 
 { c:'LU', f:'SEL', fac:'SELBARAS', name:'루시엔', sex:'♂',
@@ -1169,8 +1170,8 @@ const chars = [
   keys:['다정한가면','계략','가학성'],
   quote:'괜찮아? 무리하지 말고.',
   desc:'항상 다정하게 웃지만, 속으로는 타인의 약점과 감정을 끊임없이 계산하는 위험한 사람. 정신계열 마법으로 상대가 눈치채지 못한 채 감정과 행동을 유도하며, 거슬리는 인간이 스스로 무너지는 과정을 즐긴다. 온화한 평판은 완벽하게 만들어낸 가면이다. 단, 진심을 준 상대에게만큼은 그 잔혹함을 향하지 못하고 오히려 자신이 흔들린다.',
-  voice:'늘 부드러운 반말. 잔혹한 상황일수록 오히려 목소리가 더 나긋해진다.',
-  mystery:'그는 언제부터 셀바라스의 몰락을 눈치채고 있었을까?' },
+  point:'상대의 감정과 약점을 읽는 데 유난히 능하다.',
+  record:'가문의 몰락이 시작되기 전부터 평소와 다른 움직임을 보이고 있었다.' },
 
 
 { c:'CA', f:'SEL', fac:'SELBARAS', name:'카엘', sex:'♂',
@@ -1180,8 +1181,8 @@ const chars = [
   keys:['장난꾸러기','다혈질','단순직진'],
   quote:'헐 대박, 진짜?!',
   desc:'생각보다 몸이 먼저 움직이고, 좋고 싫은 감정이 얼굴에 전부 드러나는 단순한 직진형. 쌍검을 들고 빠르게 몰아붙이는 싸움을 좋아하며 시비가 걸리면 절대 피하지 않는다. 막내를 놀려먹는 것이 취미지만 악의는 거의 없다. 예상하지 못한 진심이 생기면 오히려 장난을 더 치며 자기 감정에서 도망간다.',
-  voice:'실없고 가벼운 반말. 리액션이 크고 욱하면 목소리부터 커진다.',
-  mystery:'마지막 순간, 그는 누구를 향해 달려가고 있었을까?' },
+  point:'가만히 있는 걸 못 견디며, 집안에서 가장 시끄럽다.',
+  record:'마지막으로 보았을 때, 불타는 저택 안쪽을 향해 달려가고 있었다.' },
 
 
 { c:'AS', f:'SEL', fac:'SELBARAS', name:'아스트라', sex:'♀',
@@ -1191,8 +1192,8 @@ const chars = [
   keys:['건방짐','승부욕','열등감'],
   quote:'에~ 그것도 못 해?',
   desc:'건방지고 승부욕이 강하며, 약한 모습을 보이는 것을 무엇보다 싫어한다. 작은 체구와 어린 나이에도 실력 하나로 기사단장 자리를 얻었다. 자신 역시 셀바라스에 거둬진 아이였기에 누구보다 인정받는 것에 집착하고, 그 열등감을 오만함으로 감춘다. 막내에게 유독 짓궂은 것도 자신과 닮은 모습을 보고 있기 때문이다.',
-  voice:'공작에게는 절도 있는 존댓말, 막내에게는 얄미울 정도로 건방진 반말.',
-  mystery:'그녀가 마지막까지 지키려 했던 명령은 무엇이었을까?' },
+  point:'작은 체구에 대한 열등감을 실력과 승부욕으로 덮는다.',
+  record:'저택이 무너지던 순간까지 기사단과 함께 자리를 지키고 있었다.' },
 
 
 { c:'RN', f:'SEL', fac:'SELBARAS', name:'렌', sex:'♂',
@@ -1202,8 +1203,8 @@ const chars = [
   keys:['다정','헌신','냉혹'],
   quote:'제가 지켜드리겠습니다.',
   desc:'평소에는 누구보다 다정하고 살가시지만, 막내를 위협하는 대상에게는 망설임 없이 잔혹해지는 사람. 어린 막내가 셀바라스에 들어온 순간부터 곁을 지켜온 유일한 보호자이며, 동시에 가문 최강의 암살자다. 칭찬 하나에도 환하게 웃지만 임무가 시작되는 순간 표정과 목소리에서 온기가 사라진다. 막내를 지키는 일이 충성을 넘어 자신의 존재 이유가 되어버렸다.',
-  voice:'평소에는 밝고 다정한 존댓말. 임무에 들어가면 말수가 줄고 온도가 사라진다.',
-  mystery:'당신을 도망치게 한 뒤, 그는 어디로 돌아갔을까?' },
+  point:'막내가 좋아하는 음식과 생활 습관을 누구보다 잘 안다.',
+  record:'막내를 저택 밖으로 내보낸 뒤 홀로 다시 안으로 돌아갔다.' },
 
 
 // ── 황도 ──
@@ -1215,19 +1216,8 @@ const chars = [
   keys:['능구렁이','야심','불신'],
   quote:'이거 참, 재밌는 분이시군요.',
   desc:'늘 웃으며 상대를 떠보고, 사람과 상황을 철저히 이익과 위험으로 계산하는 야심가. 무능한 부황을 밀어내고 젊어서 황좌를 차지했지만 귀족연합의 이해관계에서 완전히 자유롭지는 못하다. 누구도 믿지 않기에 속내를 농담으로 감추며, 셀바라스의 힘을 두려워해 공개적인 충돌 대신 음지에서 움직인다. 자신의 감정조차 정치적 약점으로 취급한다.',
-  voice:'항상 여유로운 존댓말. 곤란하거나 위험할수록 오히려 더 부드럽게 말한다.',
-  mystery:'황제는 셀바라스의 몰락을 어디까지 알고 있었을까?' },
-
-
-{ c:'EA', f:'CHURCH', fac:'ARGEN', name:'엘리아나', sex:'♀',
-  ageS:12, ageN:22, height:158, weight:46,
-  jobS:'성녀', jobN:'성녀',
-  mbti:'INFP',
-  keys:['온화','소탈','억눌림'],
-  quote:'있잖아, 너무한 거 아니야?',
-  desc:'본래는 소탈하고 수다스러운 평범한 소녀지만, 성녀라는 역할 때문에 늘 얌전하고 성스럽게 행동한다. 평민 출신으로 교단의 격식과 위선을 불편해하며, 사람들에게 숭배받기보다 한 사람으로 인정받기를 원한다. 군것질을 좋아하고 마음을 연 상대 앞에서는 장난도 잘 친다. 자신의 의지보다 교단의 뜻을 우선해야 하는 삶에 점점 숨이 막혀간다.',
-  voice:'공적인 자리에서는 부드러운 존댓말. 마음을 연 상대에게는 밝고 빠른 또래 반말.',
-  mystery:'그날 성녀는 누구를 위해 기도하고 있었을까?' },
+  point:'웃고 있을 때일수록 상대를 더 냉정하게 계산하고 있다.',
+  record:'셀바라스가 역적으로 선포되던 날, 황궁은 이미 움직일 준비를 마친 상태였다.' },
 
 
 { c:'RZ', f:'IMP', fac:'SOLDRAIN', name:'리제트 로즈번', sex:'♀',
@@ -1237,8 +1227,21 @@ const chars = [
   keys:['발랄','붙임성','외로움'],
   quote:'야야, 이거 봤어?!',
   desc:'사람을 좋아하고 호기심이 많아 낯선 상대에게도 먼저 달려드는 활력 덩어리. 모두가 어둠 가문의 막내를 피할 때도 아무 생각 없이 손부터 내민 첫 또래 친구다. 천진하고 단순해 보이지만 의외로 싸움에도 강하고 중요한 순간에는 겁을 내지 않는다. 늘 먼저 다가가는 이유 뒤에는 혼자 남겨지는 것을 견디지 못하는 외로움이 숨어 있다.',
-  voice:'느낌표가 어울리는 빠른 반말. 신이 나면 말보다 손이 먼저 움직인다.',
-  mystery:'마지막 날, 그녀는 왜 아무 말도 하지 않았을까?' },
+  point:'누구에게든 먼저 다가가지만, 정작 혼자 남겨지는 것은 누구보다 두려워한다.',
+  record:'몰락 직전까지 연락을 이어오다가 어느 날 갑자기 모든 소식이 끊겼다.' },
+
+
+// ── 아르젠 교단 ──
+
+{ c:'EA', f:'CHURCH', fac:'ARGEN', name:'엘리아나', sex:'♀',
+  ageS:12, ageN:22, height:158, weight:46,
+  jobS:'성녀', jobN:'성녀',
+  mbti:'INFP',
+  keys:['온화','소탈','억눌림'],
+  quote:'있잖아, 너무한 거 아니야?',
+  desc:'본래는 소탈하고 수다스러운 평범한 소녀지만, 성녀라는 역할 때문에 늘 얌전하고 성스럽게 행동한다. 평민 출신으로 교단의 격식과 위선을 불편해하며, 사람들에게 숭배받기보다 한 사람으로 인정받기를 원한다. 군것질을 좋아하고 마음을 연 상대 앞에서는 장난도 잘 친다. 자신의 의지보다 교단의 뜻을 우선해야 하는 삶에 점점 숨이 막혀간다.',
+  point:'군것질을 좋아하며, 마음을 연 상대 앞에서는 성녀답지 않게 꽤 장난스럽다.',
+  record:'셀바라스가 무너지던 날, 교단의 공식 기록과 다른 움직임이 남아 있었다.' },
 
 
 // ── 남부 ──
@@ -1250,8 +1253,8 @@ const chars = [
   keys:['호탕','능글맞음','의리'],
   quote:'어이, 좀 쉬면서 해!',
   desc:'호탕하고 능글맞으며 처음 만난 사람과도 금세 어깨를 걸 수 있는 호쾌한 성격. 장난을 즐기지만 상황 판단이 빠르고, 한번 자신의 사람이라 정하면 끝까지 책임진다. 남부 해군과 항구를 사실상 장악하고 있으면서도 권력을 과시하기보다는 사람을 휘어잡는 카리스마로 움직인다. 웃음 뒤에는 제독 자리를 지키기 위해 스스로 끊어낸 수많은 인연의 무게가 남아 있다.',
-  voice:'거침없고 능글맞은 반말. 진지해지면 농담이 사라지고 말이 또박또박해진다.',
-  mystery:'셀바라스가 무너지던 날, 남부는 왜 움직이지 않았을까?' },
+  point:'한번 자기 사람이라고 정하면, 손해를 보더라도 끝까지 책임진다.',
+  record:'셀바라스의 몰락 당시 남부 함대는 끝내 움직이지 않았다.' },
 
 
 { c:'AD', f:'SOUTH', fac:'BELMARA', name:'에드릭', sex:'♂',
@@ -1261,8 +1264,8 @@ const chars = [
   keys:['냉정','세심','쑥맥'],
   quote:'…이거 드시죠.',
   desc:'겉으로는 냉정하고 빈틈없지만, 신경 쓰이는 사람은 말없이 하나부터 열까지 챙겨버리는 타입. 감정 표현과 말재주에는 형편없이 서툴러 예상 밖의 질문을 받으면 금세 말이 꼬인다. 자신을 노예 생활에서 구해준 데이브에게 절대적인 은혜를 느끼며 평생 갚아야 한다고 생각한다. 자신이 원하는 것보다 타인에게 필요한 것이 무엇인지부터 생각한다.',
-  voice:'차분하고 단정한 존댓말. 당황하면 평소와 달리 말이 엉킨다.',
-  mystery:'그가 마지막까지 숨기고 있던 보고는 무엇이었을까?' },
+  point:'자기 마음은 숨겨도, 신경 쓰이는 사람에게 필요한 것은 먼저 알아챈다.',
+  record:'몰락 직전 작성된 보고 가운데 하나는 끝내 제독에게 전달되지 않았다.' },
 
 
 // ── 북부 ──
@@ -1274,8 +1277,8 @@ const chars = [
   keys:['과묵','우직','다정'],
   quote:'놔둬.',
   desc:'말수는 극도로 적지만 한번 마음에 둔 사람에게는 묵묵히 모든 것을 내어주는 우직한 사람. 거대한 체격과 무서운 인상 때문에 오해받지만 실제로는 작은 동물 하나 제대로 밀어내지 못할 정도로 여리다. 설원에 유폐된 뒤에도 누구에게 인정받기 위해서가 아니라 자신이 막지 않으면 사람들이 죽는다는 이유만으로 마물 최전선을 지킨다. 소중한 것을 얻을수록 잃는 것을 두려워한다.',
-  voice:'느리고 짧은 반말. 필요한 말만 하며 대부분 행동과 침묵으로 답한다.',
-  mystery:'그날 북부에서는 대체 무엇과 싸우고 있었을까?' },
+  point:'무서운 인상과 달리 작은 동물 하나 제대로 밀어내지 못할 만큼 여리다.',
+  record:'셀바라스가 무너지던 날에도 북부군은 설원을 떠날 수 없는 상황이었다.' },
 
 
 // ── 동부 ──
@@ -1287,8 +1290,8 @@ const chars = [
   keys:['소심','분석적','마법천재'],
   quote:'그건… 안 만지시는 게 좋아요.',
   desc:'사람 앞에서는 한없이 소심하고 눈치를 보지만, 마법과 연구 앞에서는 누구보다 자신감이 넘치는 천재. 감정보다는 분석과 논리를 먼저 세우며 이해할 수 없는 상황을 그냥 넘기지 못한다. 어린 시절 폭주한 마력으로 부모를 죽인 기억 때문에 자신의 힘을 두려워하고 타인과 거리를 둔다. 연애감정조차 처음에는 감정이 아니라 설명해야 할 이상 현상처럼 분석하려 한다.',
-  voice:'조심스럽고 머뭇거리는 존댓말. 마법 이야기가 나오면 갑자기 또렷하고 단단해진다.',
-  mystery:'그는 회귀 이전부터 무언가 잘못됐다는 걸 알고 있었을까?' },
+  point:'이해할 수 없는 감정이 생기면, 느끼기보다 먼저 원인을 분석하려 든다.',
+  record:'회귀 이전에도 몇 차례 설명되지 않는 이상 현상을 따로 기록해 두었다.' },
 
 
 // ── 서부 ──
@@ -1300,9 +1303,8 @@ const chars = [
   keys:['쾌락주의','승부욕','현실주의'],
   quote:'재밌겠네, 놀아볼까?',
   desc:'재미와 이익이 보이면 위험에도 먼저 뛰어드는 승부사이며, 손해 보는 선택을 세상에서 가장 싫어한다. 입이 거칠고 사람을 돈과 가치로 재는 현실주의자지만, 한번 흥미를 느낀 상대에게는 이상할 정도로 집요하다. 출신도 배경도 없이 돈과 실력만으로 서부를 장악했기에 약하게 보이는 것을 극도로 싫어한다. 돈으로 살 수 없는 것이 나타났을 때에만 계산보다 감정이 먼저 움직인다.',
-  voice:'시원시원하고 거친 반말. 거래에 들어가면 목소리가 낮아지고 훨씬 계산적으로 변한다.',
-  mystery:'돈으로 모든 걸 사고팔던 그녀가 끝내 거래하지 않은 것은 무엇이었을까?'
-},
+  point:'돈으로 살 수 없는 것이 나타날 때에만 계산보다 감정이 먼저 움직인다.',
+  record:'셀바라스가 무너지기 직전, 거액이 걸린 거래 하나를 스스로 파기했다.' }
 
 ];
 
@@ -1348,22 +1350,33 @@ function render(){
 
 function openM(i){
   const c = chars[i];
-  document.getElementById('mImg').src = URL_(c.c,era,'P1');
+
+  document.getElementById('mImg').src = URL_(c.c, era, 'P1');
   document.getElementById('mFac').innerText = c.fac;
   document.getElementById('mName').innerText = c.name;
-document.getElementById('mMeta').innerText =
-  `${c.sex} · ${era==='S'?c.ageS:c.ageN}세 · ${era==='S'?c.jobS:c.jobN} · ${c.mbti}` +
-  (era==='N' ? ` · ${c.height}cm · ${c.weight}kg` : '');
-  document.getElementById('mKeys').innerHTML = c.keys.map(k=>`<span>${k}</span>`).join('');
-document.getElementById('mQuote').innerHTML = `"${c.quote}"`;
-document.getElementById('mDesc').innerText = c.desc;
-document.getElementById('mVoice').innerText = c.voice;
-document.getElementById('mFate').innerText = c.mystery;
+
+  document.getElementById('mMeta').innerText =
+    `${c.sex} · ${era==='S' ? c.ageS : c.ageN}세 · ${era==='S' ? c.jobS : c.jobN} · ${c.mbti}` +
+    (era==='N' ? ` · ${c.height}cm · ${c.weight}kg` : '');
+
+  document.getElementById('mKeys').innerHTML =
+    c.keys.map(k => `<span>${k}</span>`).join('');
+
+  document.getElementById('mQuote').innerHTML = `"${c.quote}"`;
+  document.getElementById('mDesc').innerText = c.desc;
+  document.getElementById('mPoint').innerText = c.point;
+  document.getElementById('mRecord').innerText = c.record;
   document.getElementById('mThumbs').innerHTML = STATES.map((s,n)=>
-    `<img src="${URL_(c.c,era,s)}" class="${n===0?'on':''}" onclick="swap(this,'${URL_(c.c,era,s)}')" alt="">`
+    `<img
+      src="${URL_(c.c,era,s)}"
+      class="${n===0 ? 'on' : ''}"
+      onclick="swap(this,'${URL_(c.c,era,s)}')"
+      alt=""
+    >`
   ).join('');
+
   document.getElementById('modal').classList.add('open');
-  document.body.style.overflow='hidden';
+  document.body.style.overflow = 'hidden';
 }
 function swap(el,src){
   document.getElementById('mImg').src=src;
